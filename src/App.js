@@ -35,6 +35,16 @@ function App() {
     setLoading(false)
   }
 
+  const prev = async () => {
+    if (!prevUrl) return;
+    setLoading(true)
+    let data = await getAllPokemon(prevUrl);
+    await loadPokemon(data.results);
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
+    setLoading(false)
+  }
+
   return (
     <Navbar />
     <div>
